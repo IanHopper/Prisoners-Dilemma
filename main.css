@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=IM+Fell+French+Canon+SC&family:wght@600&display=swap');
+
+body {
+  font-family: Oswald;
+  background-color: #kkk;
+  color: #f4f4f4;
+}
+
+#title {
+  color: #f4f4f4;
+  font-variant: small-caps;
+  /* font-family: 'IM Fell French Canon SC'; */
+}
+
+#iterations {
+  max-width: 70px;
+}
+
+#bob-name {
+  color: red;
+}
+
+#larry-name {
+  color: lime;
+}
+
+.container {
+  background-color:#666;
+  background-image: linear-gradient(to bottom right, #222, #666);
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.point-total {
+  font-size: 12pt;
+  color: white;
+}
