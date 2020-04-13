@@ -15,6 +15,10 @@
       <div class="row mb-3">
         <div class="col-sm-12 text-center">
           <h1 id="title">Prisoner's Dilemma</h1>
+          <p>Bob and Larry have been arrested and the cops are interrogating them separately. <br>
+            Each can choose whether to stonewall the cops or rat out the other guy.<br>
+            You can iterate the program to see what happens if Bob and Larry are repeatedly arrested and interrogated.
+          </p>
         </div>
       </div>
       <div class="row" id="main-selection">
@@ -57,17 +61,17 @@
           </div>
         </div>
       </div>
-      <div class="row" id="custom-strats">
+      <div class="row" id="custom-strats" style="display: none">
         <!-- Bob Custom strategy -->
-        <div class="col-sm-4" id="bob-custom-strat">
+        <div class="col-sm-4" id="bob-custom-strat" style="visibility: hidden">
           <div>
             <h4 class="text-center">Opening Move</h4>
             <div class="custom-control custom-radio">
-              <input type="radio" id="bob-open-stonewall" name="customRadio" class="custom-control-input">
+              <input type="radio" id="bob-open-stonewall" name="bob-open" class="custom-control-input" value=1>
               <label for="bob-open-stonewall" class="custom-control-label">Stonewall the cops</label>
             </div>
             <div class="custom-control custom-radio">
-              <input type="radio" id="bob-open-rat" name="customRadio" class="custom-control-input">
+              <input type="radio" id="bob-open-rat" name="bob-open" class="custom-control-input">
               <label for="bob-open-rat" class="custom-control-label">Rat out Larry</label>
             </div>
           </div>
@@ -106,16 +110,16 @@
           </div>
         </div>
         <!-- Larry Custom Strategy -->
-        <div class="col-sm-4" id="bob-custom-strat">
+        <div class="col-sm-4" id="larry-custom-strat" style="visibility: hidden">
           <div>
             <h4 class="text-center">Opening Move</h4>
             <div class="custom-control custom-radio">
-              <input type="radio" id="bob-open-stonewall" name="customRadio" class="custom-control-input">
-              <label for="bob-open-stonewall" class="custom-control-label">Stonewall the cops</label>
+              <input type="radio" id="larry-open-stonewall" name="larry-open" class="custom-control-input">
+              <label for="larry-open-stonewall" class="custom-control-label">Stonewall the cops</label>
             </div>
             <div class="custom-control custom-radio">
-              <input type="radio" id="bob-open-rat" name="customRadio" class="custom-control-input">
-              <label for="bob-open-rat" class="custom-control-label">Rat out Bob</label>
+              <input type="radio" id="larry-open-rat" name="larry-open" class="custom-control-input">
+              <label for="larry-open-rat" class="custom-control-label">Rat out Bob</label>
             </div>
           </div>
           <div class="mt-2">

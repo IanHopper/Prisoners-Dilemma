@@ -2,14 +2,10 @@
 
 body {
   font-family: Oswald;
-  background-color: #kkk;
-  color: #f4f4f4;
 }
 
 #title {
-  color: #f4f4f4;
   font-variant: small-caps;
-  /* font-family: 'IM Fell French Canon SC'; */
 }
 
 #iterations {
@@ -25,8 +21,6 @@ body {
 }
 
 .container {
-  background-color:#666;
-  background-image: linear-gradient(to bottom right, #222, #666);
   border-radius: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -34,7 +28,6 @@ body {
 
 .point-total {
   font-size: 12pt;
-  color: white;
 }
 
 footer {
@@ -45,15 +38,15 @@ footer {
   padding-top: 10px;
   padding-bottom: 10px;
   border-radius: 10px;
-  background-color: #999;
-}
-
-#custom-strats h2,h4{
-  color:rgb(55, 94, 126);
+  background-color:#666;
+  background-image: linear-gradient(to bottom right, #555, #888);
 }
 
 #custom-strat-explain{
   background-color: #f4f4f4;
   border-radius: 10px;
-  color:#999;
+}
+
+#bob-custom-strat, #larry-custom-strat {
+  color: white;
 }
