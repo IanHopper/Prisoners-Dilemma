@@ -36,3 +36,24 @@ body {
   font-size: 12pt;
   color: white;
 }
+
+footer {
+  color: black;
+}
+
+#custom-strats {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  background-color: #999;
+}
+
+#custom-strats h2,h4{
+  color:rgb(55, 94, 126);
+}
+
+#custom-strat-explain{
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  color:#999;
+}

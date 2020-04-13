@@ -21,19 +21,28 @@ calculate.addEventListener('click', iterate);
 // Event listener for reset button
 document.getElementById('reset').addEventListener('click', reset)
 
+// Event listener for custom strategy
+
+
+let random = Math.floor(Math.random() * 100) + 1; // returns a random integer from 1 to 100
+console.log(random)
+
 // Reset function for page data; does not reload page
 function reset() {
-  // Point counters
-  let bobPoints = 0
-  let larryPoints = 0
+  console.log("Values reset")
+  // Reset point counters
+  bobPoints = 0
+  larryPoints = 0
 
-  // Trackers
-  let bobLoyal = true;
-  let larryLoyal = true;
-  let bobAlwaysLoyal = true;
-  let larryAlwaysLoyal = true;
-  let larryLoyaltyBalance = 0;
-  let bobLoyaltyBalance = 0;
+  // Reset loyalty rackers
+  bobLoyal = true;
+  larryLoyal = true;
+  bobAlwaysLoyal = true;
+  larryAlwaysLoyal = true;
+  larryLoyaltyBalance = 0;
+  bobLoyaltyBalance = 0;
+
+  // Clear innerHTML data
   let results = document.getElementById('results')
   let bWins = document.getElementById('bob-wins')
   let lWins = document.getElementById('larry-wins')
@@ -42,21 +51,20 @@ function reset() {
   lWins.innerHTML = '';
 }
 
+// Run calculation indicated number of times
 function iterate() {
   let x = document.getElementById('iterations').value;
   while (x> 0) {
     getResults()
     x -= 1
-    console.log(`X is: ${x}`)
   }
 }
 
 // Calculate outcome of strategy choices and display results
 function getResults() {
-  // let b = document.getElementById('bob-strategy').value;
-  // let l = document.getElementById('larry-strategy').value;
+ // Determine actual strategy based on loyalty
   let stratValues = determineStrat();
-  // console.log(stratValues)
+  // Set strategy variables
   let b = stratValues['b']
   let l = stratValues['l']
   console.log(`Calculation values:${b} ${l}`);
@@ -75,7 +83,6 @@ function getResults() {
     larryAlwaysLoyal = false;
     bobLoyal = false;
     larryLoyal = false;
-
   } else if (b > l) {
     result = 'Bob ratted and Larry got a long stretch'
     bobPoints += 5;
@@ -89,6 +96,7 @@ function getResults() {
     larryLoyal = false;
     bobLoyal = true;
   }
+  // Output results in innerHTML
   let results = document.getElementById('results')
   let bWins = document.getElementById('bob-wins')
   let lWins = document.getElementById('larry-wins')
@@ -103,12 +111,13 @@ function getResults() {
   lWins.innerHTML = `&nbsp;&nbsp; ${larryPoints} pts`
 };
 
+// Function to calculate actual strategy based on loyalty
 function determineStrat () {
   // Check chosen strat
   let b = document.getElementById('bob-strategy').value;
   let l = document.getElementById('larry-strategy').value;
   console.log(`Initial values: ${b} ${l}`)
-  // Determine strat value
+  // Determine actual strat value for tit for tat
   if (b == 3){
     if (larryLoyal == true) {
       b = 1
@@ -123,6 +132,7 @@ function determineStrat () {
       l = 2
     }
   }
+  // Determine actual strategy for eternal grudge
   if (b == 4){
     if (larryAlwaysLoyal == true) {
       b = 1
@@ -136,11 +146,10 @@ function determineStrat () {
     } else {
       l = 2
     }
+  
+  // Determine actual strategy for custom
   }
   console.log(`Reaction values: ${b} ${l}`)
   return {'b': b, 'l': l}
 
 }
-
-
-// console.log(determineStrat());

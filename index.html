@@ -17,7 +17,7 @@
           <h1 id="title">Prisoner's Dilemma</h1>
         </div>
       </div>
-      <div class="row">
+      <div class="row" id="main-selection">
         <div class="col-sm-4 text-center">
           <h2 id="bob-name">Bob<span class="point-total" id="bob-wins"></span></h2>
           <div class="form-group">
@@ -27,6 +27,7 @@
               <option value="2">Rat out the other guy</option>
               <option value="3">Tit for Tat</option>
               <option value="4">Eternal Grudge</option>
+              <option value="5">Custom Strategy</option>
             </select>
           </div>
         </div>
@@ -36,9 +37,9 @@
           <br>
           <div class="input-group mb-3 justify-content-center">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1">Iterations</span>
+              <span class="input-group-text" id="iteration-addon">Iterations</span>
             </div>
-            <input id="iterations" type="number" class="form-control" value=1 aria-label="Iterations" aria-describeby="basic-addon1">
+            <input id="iterations" type="number" class="form-control" value=1 aria-label="Iterations" aria-describeby="iteration-addon">
           </div>
         </div>
         <div class="col-sm-4 text-center">
@@ -51,7 +52,99 @@
               <option value="2">Rat out the other guy</option>
               <option value="3">Tit for Tat</option>
               <option value="4">Eternal Grudge</option>
+              <option value="5">Custom Strategy</option>
             </select>
+          </div>
+        </div>
+      </div>
+      <div class="row" id="custom-strats">
+        <!-- Bob Custom strategy -->
+        <div class="col-sm-4" id="bob-custom-strat">
+          <div>
+            <h4 class="text-center">Opening Move</h4>
+            <div class="custom-control custom-radio">
+              <input type="radio" id="bob-open-stonewall" name="customRadio" class="custom-control-input">
+              <label for="bob-open-stonewall" class="custom-control-label">Stonewall the cops</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input type="radio" id="bob-open-rat" name="customRadio" class="custom-control-input">
+              <label for="bob-open-rat" class="custom-control-label">Rat out Larry</label>
+            </div>
+          </div>
+          <div class="mt-2">
+            <h4 class="text-center">Reactions</h4>
+            <div class="mb-2 text-center">What percentage will you stonewall if the last round...</div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Both stonewalled</span>
+              </div>
+                <input id="bob-both-stonewalled" class="form-control" aria-label="Both stonewalled" aria-describeby="bob-both-stonewalled" type="number" placeholder=50>
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Both ratted</span>
+              </div>
+                <input id="bob-both-ratted" class="form-control" aria-label="Both ratted" aria-describeby="bob-both-ratted" type="number" placeholder=50>
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Only you ratted</span>
+              </div>
+                <input id="bob-bob-ratted" class="form-control" aria-label="You ratted" aria-describeby="bob-bob-ratted" type="number" placeholder=50>
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Only Larry ratted</span>
+              </div>
+                <input id="bob-larry-ratted" class="form-control" aria-label="You didn't rat" aria-describeby="bob-larry-ratted" type="number" placeholder=50>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 text-center" id="custom-strat-explain">
+          <div> 
+            <h2>Custom Strategies</h2>Enter your opening move and the percentage of the time you will stonewall based on the most recent outcome.
+          </div>
+        </div>
+        <!-- Larry Custom Strategy -->
+        <div class="col-sm-4" id="bob-custom-strat">
+          <div>
+            <h4 class="text-center">Opening Move</h4>
+            <div class="custom-control custom-radio">
+              <input type="radio" id="bob-open-stonewall" name="customRadio" class="custom-control-input">
+              <label for="bob-open-stonewall" class="custom-control-label">Stonewall the cops</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input type="radio" id="bob-open-rat" name="customRadio" class="custom-control-input">
+              <label for="bob-open-rat" class="custom-control-label">Rat out Bob</label>
+            </div>
+          </div>
+          <div class="mt-2">
+            <h4 class="text-center">Reactions</h4>
+            <div class="mb-2 text-center">What percentage will you stonewall if the last round...</div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Both stonewalled</span>
+              </div>
+                <input id="larry-both-stonewalled" class="form-control" aria-label="Both stonewalled" aria-describeby="larry-both-stonewalled" type="number" placeholder=50>
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Both ratted</span>
+              </div>
+                <input id="larry-both-ratted" class="form-control" aria-label="Both ratted" aria-describeby="larry-both-ratted" type="number" placeholder=50>
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Only you ratted</span>
+              </div>
+                <input id="larry-bob-ratted" class="form-control" aria-label="You ratted" aria-describeby="larry-bob-ratted" type="number" placeholder=50>
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Only Larry ratted</span>
+              </div>
+                <input id="larry-larry-ratted" class="form-control" aria-label="You didn't rat" aria-describeby="larry-larry-ratted" type="number" placeholder=50>
+            </div>
           </div>
         </div>
       </div>
@@ -60,7 +153,9 @@
       </div>
     </div>
   </main>
-  <footer></footer>
+  <footer class="mt-5 p-3 text-center bg-light">
+    Prisoner's Dilemma App &copy; 2020
+  </footer>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
