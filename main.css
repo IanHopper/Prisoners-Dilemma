@@ -4,11 +4,11 @@ body {
   font-family: Oswald;
 }
 
-#you-name {
+.you {
   color: green;
 }
 
-#accomplice-name {
+.accomplice {
   color: red;
 }
 
@@ -60,10 +60,5 @@ footer {
 #matrix {
   margin-left: auto;
   margin-right: auto;
+  border: 5px;
 }
-
-/* #scoring {
-} */
-
-/* #intro{
-} */

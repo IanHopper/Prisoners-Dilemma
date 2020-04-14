@@ -116,6 +116,9 @@ function reset() {
 // Run calculation indicated number of times
 function iterate() {
   let x = document.getElementById('iterations').value;
+  if (x > 1000) {
+    x = 1000;
+  }
   console.log(`This is x: ${x}`)
   while (x> 0 && iterCheck) {
     getResults()
@@ -177,7 +180,7 @@ function getResults() {
   let lWins = document.getElementById('accomplice-wins')
   results.innerHTML = `
     <p>
-    <h6>In total here have been:</h6>${bothCoooperate} mutual cooperations<br> ${bothDefect} mutual defections<br> ${youDefect} solo defections by you<br> ${accompliceDefects} solo defections by your accomplice.
+    <h6>In total there have been:</h6>${bothCoooperate} mutual cooperations<br> ${bothDefect} mutual defections<br> ${youDefect} solo defections by you<br> ${accompliceDefects} solo defections by your accomplice.
     </p>
     <p class="text-center">Most recent result: ${result}</p>
   `
@@ -317,5 +320,9 @@ function determineStrat () {
   console.log(`Reaction values: ${b} ${l}`)
   return {'b': b, 'l': l}
 
+}
+
+function updateTextInput(val) {
+  document.getElementById('accomplice-you-ratted').value=val; 
 }
 

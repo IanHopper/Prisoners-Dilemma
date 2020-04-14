@@ -51,33 +51,27 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row text-center">
         <div class="col-sm-12" id="scoring"></div>
-        <table id="matrix" class="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col">SCORING</th>
-              <th scope="col"> Accomplice Cooperates</th>
-              <th scope="col"> Accomplice Defects</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row"> You Cooperate</th>
-              <td>Each gets 3pts</td>
-              <td>You 1pt, Accomplice 5pts</td>
-            </tr>
-            <tr>
-              <th scope="row"> You Defect</th>
-              <td>You 5pts, Accomplice 1pt</td>
-              <td>Each gets 1pt</td>
-            </tr>
-          </tbody>
-        </table>
+        <div id="scoring-table" class="col-sm-12 justify-content-center">
+          <table id="matrix" class="table table-hover">
+            <tbody>
+              <tr>
+                <td>BOTH COOPERATE<br><span class="you">You (3pts)</span>/<br><span class="accomplice">Accomplice 3pts)</span></td>
+                <td>ACCOMPLICE<br> DEFECTS ALONE<br><span class="you">You (1pt)</span>/<br><span class="accomplice">Accomplice (5pts)</span></td>
+              </tr>
+              <tr>
+                <td>YOU DEFECT ALONE<br><span class="you">You (5pts)</span>/<br><span class="accomplice">Accomplice (1pt)</span></td>
+                <td>BOTH DEFECT<br><span class="you">You (1pt)</span>/<br><span class="accomplice">Accomplice (1pt)</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
       </div>
       <div class="row" id="main-selection">
         <div class="col-sm-6 text-center">
-          <h2 id="you-name">You<span class="point-total" id="you-wins"></span></h2>
+          <h2 class="you">You<span class="point-total" id="you-wins"></span></h2>
           <div class="form-group">
             <label for="you-strategy">Strategy</label>
             <select name="you-strategy" id="you-strategy" class="form-control">
@@ -131,7 +125,7 @@
           </div>
         </div>
         <div class="col-sm-6 text-center">
-          <h2 id="accomplice-name">Accomplice<span class="point-total" id="accomplice-wins"></span></h2>
+          <h2 class="accomplice">Accomplice<span class="point-total" id="accomplice-wins"></span></h2>
           <div class="form-group">
             <label for="accomplice-strategy">Strategy</label>
             <select name="accomplice-strategy" id="accomplice-strategy" class="form-control">
@@ -179,6 +173,7 @@
                     <span class="input-group-text">Accomplice solo defects</span>
                   </div>
                     <input id="accomplice-you-ratted" class="form-control" aria-label="you didn't rat" aria-describeby="accomplice-you-ratted" type="number" value=50>
+                    <input type="range" class="custom-range" id="customRange1" min="0" max="100" onchange="updateTextInput(this.value);">
                 </div>
               </div>
             </div>
@@ -194,10 +189,12 @@
             <div class="input-group-prepend">
               <span class="input-group-text" id="iteration-addon">Iterations</span>
             </div>
-            <input id="iterations" type="number" class="form-control" value=1 aria-label="Iterations" aria-describeby="iteration-addon">
+            <input id="iterations" type="number" class="form-control" value=1 aria-label="Iterations" aria-describeby="iteration-addon" min="1" max="10">
           </div>
         </div>
-          
+        <div class="col">
+          <p>Maximum of 1000 iterations at a time</p>
+        </div>  
         </div>
     </div>
   </main>
