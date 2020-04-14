@@ -54,20 +54,26 @@
       <div class="row text-center">
         <div class="col-sm-12" id="scoring"></div>
         <div id="scoring-table" class="col-sm-12 justify-content-center">
-          <table id="matrix" class="table table-hover">
+          <table id="matrix" class="table">
             <tbody>
+              <thead>
+                <th></th>
+                <th><span class="accomplice">Accomplice</span><br>Cooperates</th>
+                <th><span class="accomplice">Accomplice</span><br>Defects</th>
+              </thead>
               <tr>
-                <td>BOTH COOPERATE<br><span class="you">You (3pts)</span>/<br><span class="accomplice">Accomplice 3pts)</span></td>
-                <td>ACCOMPLICE<br> DEFECTS ALONE<br><span class="you">You (1pt)</span>/<br><span class="accomplice">Accomplice (5pts)</span></td>
+                <td><span class="you">You</span><br>Cooperate</td>
+                <td>Mutual Cooperation<br><span class="you">You 3pts</span><br><span class="accomplice">Accomplice 3pts</span></td>
+                <td><br>Solo Defection (Accomplice)<br><span class="you">You 0pts</span><br><span class="accomplice">Accomplice 5pts</span></td>
               </tr>
               <tr>
-                <td>YOU DEFECT ALONE<br><span class="you">You (5pts)</span>/<br><span class="accomplice">Accomplice (1pt)</span></td>
-                <td>BOTH DEFECT<br><span class="you">You (1pt)</span>/<br><span class="accomplice">Accomplice (1pt)</span></td>
+                <td><span class="you">You</span><br>Defect</td>
+                <td><br>Solo Defection (You)<br><span class="you">You 5pts</span><br><span class="accomplice">Accomplice 0pts</span></td>
+                <td>Mutual Defection<br><span class="you">You 1pt</span><br><span class="accomplice">Accomplice 1pt</span></td>
               </tr>
             </tbody>
           </table>
         </div>
-        
       </div>
       <div class="row" id="main-selection">
         <div class="col-sm-6 text-center">
@@ -173,7 +179,6 @@
                     <span class="input-group-text">Accomplice solo defects</span>
                   </div>
                     <input id="accomplice-you-ratted" class="form-control" aria-label="you didn't rat" aria-describeby="accomplice-you-ratted" type="number" value=50>
-                    <input type="range" class="custom-range" id="customRange1" min="0" max="100" onchange="updateTextInput(this.value);">
                 </div>
               </div>
             </div>

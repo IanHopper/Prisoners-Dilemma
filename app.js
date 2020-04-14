@@ -18,7 +18,7 @@ let accompliceLoyaltyBalance = 0; // Included for future stategy options based o
 let youLoyaltyBalance = 0; // Included for future stategy options based on overall play of accomplice
 
 //Outcome counters
-let bothCoooperate = 0;
+let bothCooperate = 0;
 let bothDefect = 0;
 let youDefect = 0;
 let accompliceDefects = 0;
@@ -93,7 +93,7 @@ function reset() {
   youLoyaltyBalance = 0;
 
   //Outcome counters
-  bothCoooperate = 0;
+  bothCooperate = 0;
   bothDefect = 0;
   youDefect = 0;
   accompliceDefects = 0;
@@ -118,6 +118,7 @@ function iterate() {
   let x = document.getElementById('iterations').value;
   if (x > 1000) {
     x = 1000;
+    document.getElementById('iterations').value = 1000;
   }
   console.log(`This is x: ${x}`)
   while (x> 0 && iterCheck) {
@@ -143,7 +144,7 @@ function getResults() {
     youLast = 1;
     accompliceLast = 1;
     firstIteration = false;
-    bothCoooperate += 1;
+    bothCooperate += 1;
   } else if (b == 2 && l == 2) {
     result = 'You both defected and got 1 point each'
     youPoints += 1;
@@ -178,10 +179,27 @@ function getResults() {
   let results = document.getElementById('scoring')
   let bWins = document.getElementById('you-wins')
   let lWins = document.getElementById('accomplice-wins')
+  let totalIterations = bothCooperate + bothDefect + youDefect + accompliceDefects
   results.innerHTML = `
-    <p>
-    <h6>In total there have been:</h6>${bothCoooperate} mutual cooperations<br> ${bothDefect} mutual defections<br> ${youDefect} solo defections by you<br> ${accompliceDefects} solo defections by your accomplice.
-    </p>
+    <table id="results-matrix" class="table">
+      <tbody>
+        <thead>
+          <th></th>
+          <th><span class="accomplice">Accomplice</span><br>Cooperates</th>
+          <th><span class="accomplice">Accomplice</span><br>Defects</th>
+        </thead>
+        <tr>
+          <td><span class="you">You</span><br>Cooperate</td>
+          <td>Mutual Cooperation<br><span class="percentage">${((bothCooperate/totalIterations)*100).toFixed(2)}% of outcomes</span><br><span class="you">You ${bothCooperate * 3}pts</span><br><span class="accomplice">Accomplice ${bothCooperate * 3}pts</span></td>
+          <td>Solo Defection (Accomplice)<br><span class="percentage">${((accompliceDefects/totalIterations)*100).toFixed(2)}% of outcomes</span><br><span class="you">You 0pts</span><br><span class="accomplice">Accomplice ${accompliceDefects *5}pts</span></td>
+        </tr>
+        <tr>
+          <td><span class="you">You</span><br>Defect</td>
+          <td>Solo Defection (You)<br><span class="percentage">${((youDefect/totalIterations)*100).toFixed(2)}% of outcomes</span><br><span class="you">You ${youDefect * 5}pts</span><br><span class="accomplice">Accomplice 0pts</span></td>
+          <td>Mutual Defection<br><span class="percentage">${((bothDefect/totalIterations)*100).toFixed(2)}% of outcomes</span><br><span class="you">You ${bothDefect}pts</span><br><span class="accomplice">Accomplice ${bothDefect}pts</span></td>
+        </tr>
+      </tbody>
+    </table>
     <p class="text-center">Most recent result: ${result}</p>
   `
   document.getElementById('matrix').style.display = "none"
@@ -321,8 +339,3 @@ function determineStrat () {
   return {'b': b, 'l': l}
 
 }
-
-function updateTextInput(val) {
-  document.getElementById('accomplice-you-ratted').value=val; 
-}
-
