@@ -17,7 +17,6 @@
           <h1 id="title">Prisoner's Dilemma</h1>
           <p>Bob and Larry have been arrested and the cops are interrogating them separately. <br>
             Each can choose whether to stonewall the cops or rat out the other guy.<br>
-            You can iterate the program to see what happens if Bob and Larry are repeatedly arrested and interrogated.
           </p>
         </div>
       </div>
@@ -44,6 +43,7 @@
               <span class="input-group-text" id="iteration-addon">Iterations</span>
             </div>
             <input id="iterations" type="number" class="form-control" value=1 aria-label="Iterations" aria-describeby="iteration-addon">
+            <div id=iteration-explanation>Select how many times Bob and Larry are arrested and interrogated.</div>
           </div>
         </div>
         <div class="col-sm-4 text-center">
@@ -92,7 +92,7 @@
             </div>
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text">Only you ratted</span>
+                <span class="input-group-text">Only Bob ratted</span>
               </div>
                 <input id="bob-bob-ratted" class="form-control" aria-label="You ratted" aria-describeby="bob-bob-ratted" type="number" placeholder=50>
             </div>
@@ -139,15 +139,15 @@
             </div>
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text">Only you ratted</span>
+                <span class="input-group-text">Only Larry ratted</span>
               </div>
-                <input id="larry-bob-ratted" class="form-control" aria-label="You ratted" aria-describeby="larry-bob-ratted" type="number" placeholder=50>
+                <input id="larry-larry-ratted" class="form-control" aria-label="You ratted" aria-describeby="larry-larry-ratted" type="number" placeholder=50>
             </div>
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text">Only Larry ratted</span>
+                <span class="input-group-text">Only Bob ratted</span>
               </div>
-                <input id="larry-larry-ratted" class="form-control" aria-label="You didn't rat" aria-describeby="larry-larry-ratted" type="number" placeholder=50>
+                <input id="larry-bob-ratted" class="form-control" aria-label="You didn't rat" aria-describeby="larry-bob-ratted" type="number" placeholder=50>
             </div>
           </div>
         </div>

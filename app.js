@@ -1,7 +1,9 @@
 // This is NOT DRY code yet, but it gets the job done; refine later
-// Point counters
+// Pointers
 let bobPoints = 0
 let larryPoints = 0
+
+let firstIteration = true;
 
 // Last choice variables
 let bobLast = "";
@@ -104,6 +106,7 @@ function iterate() {
   while (x> 0) {
     getResults()
     x -= 1
+    firstIteration = false;
   }
 }
 
@@ -156,41 +159,43 @@ function getResults() {
 
 // Function to calculate actual strategy based on loyalty
 function determineStrat () {
-  // Check chosen strat
-  let b = ""
-  let l = ""
-  
-  if (bobLast == "" | larryLast == "") {
-    if (document.getElementById('bob-open-stonewall').checked){
+  // Get selected strategy
+  let b = document.getElementById('bob-strategy').value;
+  let l = document.getElementById('larry-strategy').value;
+  console.log(`Initial values: ${b} ${l}`)
+  // Check if the first iteration
+  if (firstIteration) {
+    if (b == 3 | b == 4) {
       b = 1
     }
-    if (document.getElementById('bob-open-rat').checked){
-      b = 2
-    }
-    if (document.getElementById('larry-open-stonewall').checked){
+    if (l == 3 | l == 4) {
       l = 1
     }
-    if (document.getElementById('larry-open-rat').checked){
-      l = 2
-    } 
-    if (b == "") {
-      b = document.getElementById('bob-strategy').value;
+    if (b == 5){
+      if (document.getElementById('bob-open-stonewall').checked){
+        b = 1
+      }
+      if (document.getElementById('bob-open-rat').checked){
+        b = 2
+      }
     }
-    if (l == ""){
-      l = document.getElementById('larry-strategy').value;
+    if (l == 5){
+      if (document.getElementById('larry-open-stonewall').checked){
+        l = 1
+      }
+      if (document.getElementById('larry-open-rat').checked){
+        l = 2
+      }
     }
+    console.log(`First Iteration Change: ${b} ${l}`)
   }
-  console.log(`Initial values: ${b} ${l}`)
+  
   // Determine actual strat value for tit for tat
   if (b == 3){
     b = larryLast
   }
   if (l == 3) {
-    if (bobLast != true) {
-      l = 2
-    } else {
-      l = 1
-    }
+    l = bobLast
   }
   // Determine actual strategy for eternal grudge
   if (b == 4){
@@ -205,6 +210,73 @@ function determineStrat () {
       l = 1
     } else {
       l = 2
+    }
+  }
+  let random = Math.ceil(Math.random()*100)
+  console.log(random);
+  // Custom strategies
+  if(bobLast == 1 && larryLast == 1){
+    if (b == 5){
+      if (random <= bobBothStonewalled.value){
+        b = 1
+      } else {
+        b = 2
+      }
+    }
+    if (l == 5){
+      if (random <= larryBothStonewalled.value){
+        l = 1
+      } else {
+        l = 2
+      }
+    }
+  }
+  if(bobLast == 2 && larryLast == 2){
+    if (b == 5){
+      if (random <= bobBothRatted.value){
+        b = 1
+      } else {
+        b = 2
+      }
+    }
+    if (l == 5){
+      if (random <= larryBothRatted.value){
+        l = 1
+      } else {
+        l = 2
+      }
+    }
+  }
+  if(bobLast == 2 && larryLast == 1){
+    if (b == 5){
+      if (random <= bobBobRatted.value){
+        b = 1
+      } else {
+        b = 2
+      }
+    }
+    if (l == 5){
+      if (random <= larryBobRatted.value){
+        l = 1
+      } else {
+        l = 2
+      }
+    }
+  }
+  if(bobLast == 1 && larryLast == 2){
+    if (b == 5){
+      if (random <= bobLarryRatted.value){
+        b = 1
+      } else {
+        b = 2
+      }
+    }
+    if (l == 5){
+      if (random <= larryLarryRatted.value){
+        l = 1
+      } else {
+        l = 2
+      }
     }
   }
   

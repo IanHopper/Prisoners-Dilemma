@@ -50,3 +50,11 @@ footer {
 #bob-custom-strat, #larry-custom-strat {
   color: white;
 }
+
+#iteration-explanation {
+  font-size: 10px;
+  padding-top: 2px;
+  padding-left: 28px;
+  padding-right: 28px;
+  color: #888;
+}
