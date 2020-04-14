@@ -3,7 +3,9 @@
 let bobPoints = 0
 let larryPoints = 0
 
-let firstIteration = true;
+// Iteration variables
+let firstIteration = true; // Allows checking for opening move
+let iterCheck = true; // If false this stops the iterate function if strats are incorrect
 
 // Last choice variables
 let bobLast = "";
@@ -12,8 +14,8 @@ let larryLast = "";
 // Loyalty trackers
 let bobAlwaysLoyal = true;
 let larryAlwaysLoyal = true;
-let larryLoyaltyBalance = 0;
-let bobLoyaltyBalance = 0;
+let larryLoyaltyBalance = 0; // Included for future stategy options based on overall play of opponent
+let bobLoyaltyBalance = 0; // Included for future stategy options based on overall play of opponent
 
 // Radio button groups for custom opening variables
 let bobOpen = document.getElementsByName('bob-open');
@@ -74,9 +76,14 @@ function revealCustomStrat() {
 // Reset function for page data; does not reload page
 function reset() {
   console.log("Values reset")
+
   // Reset point counters
   bobPoints = 0
   larryPoints = 0
+
+  // Iteration variables
+  firstIteration = true;
+  iterCheck = true;
 
   // Reset loyalty rackers
   bobLast = "";
@@ -103,11 +110,12 @@ function reset() {
 // Run calculation indicated number of times
 function iterate() {
   let x = document.getElementById('iterations').value;
-  while (x> 0) {
+  console.log(`This is x: ${x}`)
+  while (x> 0 && iterCheck) {
     getResults()
     x -= 1
-    firstIteration = false;
   }
+  iterCheck = true; // Resets iterCheck so that iterate will run the next time it is called
 }
 
 // Calculate outcome of strategy choices and display results
@@ -125,6 +133,7 @@ function getResults() {
     larryPoints += 3;
     bobLast = 1;
     larryLast = 1;
+    firstIteration = false;
   } else if (b == 2 && l == 2) {
     result = 'Bob and Larry both ratted on each other and got long prison terms'
     bobPoints += 1;
@@ -133,18 +142,30 @@ function getResults() {
     larryAlwaysLoyal = false;
     bobLast = 2;
     larryLast = 2;
-  } else if (b > l) {
+    firstIteration = false;
+  } else if (b == 2 && l == 1) {
     result = 'Bob ratted and Larry got a long stretch'
     bobPoints += 5;
     bobAlwaysLoyal = false;
     bobLast = 2;
     larryLast = 1;
-  } else {
+    firstIteration = false;
+  } else if (b == 1 && l == 2){
     result = 'Larry ratted and Bob got a long stretch'
     larryPoints += 5;
     larryAlwaysLoyal = false;
     larryLast = 1;
     bobLast = 2;
+    firstIteration = false;
+  } else {
+    result = 'Bob and Larry haven\'t properly selected choices.'
+    let alertDiv = document.createElement('div');
+    alertDiv.id = 'alert'
+    let alertText = document.createTextNode('Bob and Larry haven\'t properly selected choices.');
+    alertDiv.appendChild(alertText);
+    document.getElementById('intro').appendChild(alertDiv);
+    setTimeout(() => alertDiv.remove(),7000)
+    iterCheck = false;
   }
   // Output results in innerHTML
   let results = document.getElementById('results')
@@ -212,19 +233,21 @@ function determineStrat () {
       l = 2
     }
   }
-  let random = Math.ceil(Math.random()*100)
-  console.log(random);
+  
   // Custom strategies
+  let bobRandom = Math.ceil(Math.random()*100)
+  let larryRandom = Math.ceil(Math.random()*100)
+  console.log(`Bob random: ${bobRandom} Larry Random: ${larryRandom}`);
   if(bobLast == 1 && larryLast == 1){
     if (b == 5){
-      if (random <= bobBothStonewalled.value){
+      if (bobRandom <= bobBothStonewalled.value){
         b = 1
       } else {
         b = 2
       }
     }
     if (l == 5){
-      if (random <= larryBothStonewalled.value){
+      if (larryRandom <= larryBothStonewalled.value){
         l = 1
       } else {
         l = 2
@@ -233,14 +256,14 @@ function determineStrat () {
   }
   if(bobLast == 2 && larryLast == 2){
     if (b == 5){
-      if (random <= bobBothRatted.value){
+      if (bobRandom <= bobBothRatted.value){
         b = 1
       } else {
         b = 2
       }
     }
     if (l == 5){
-      if (random <= larryBothRatted.value){
+      if (larryRandom <= larryBothRatted.value){
         l = 1
       } else {
         l = 2
@@ -249,14 +272,14 @@ function determineStrat () {
   }
   if(bobLast == 2 && larryLast == 1){
     if (b == 5){
-      if (random <= bobBobRatted.value){
+      if (bobRandom<= bobBobRatted.value){
         b = 1
       } else {
         b = 2
       }
     }
     if (l == 5){
-      if (random <= larryBobRatted.value){
+      if (larryRandom <= larryBobRatted.value){
         l = 1
       } else {
         l = 2
@@ -265,14 +288,14 @@ function determineStrat () {
   }
   if(bobLast == 1 && larryLast == 2){
     if (b == 5){
-      if (random <= bobLarryRatted.value){
+      if (bobRandom <= bobLarryRatted.value){
         b = 1
       } else {
         b = 2
       }
     }
     if (l == 5){
-      if (random <= larryLarryRatted.value){
+      if (larryRandom <= larryLarryRatted.value){
         l = 1
       } else {
         l = 2
