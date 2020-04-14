@@ -4,19 +4,15 @@ body {
   font-family: Oswald;
 }
 
-#title {
-  font-variant: small-caps;
-}
-
 #iterations {
   max-width: 70px;
 }
 
-#bob-name {
+#you-name {
   color: red;
 }
 
-#larry-name {
+#accomplice-name {
   color: lime;
 }
 
@@ -34,32 +30,41 @@ footer {
   color: black;
 }
 
-#custom-strats {
+/* #custom-strats {
   padding-top: 10px;
   padding-bottom: 10px;
   border-radius: 10px;
   background-color:#666;
-  background-image: linear-gradient(to bottom right, #555, #888);
-}
+  background-image: linear-gradient(to bottom right, #555, #777);
+} */
 
 #custom-strat-explain{
-  background-color: #f4f4f4;
-  border-radius: 10px;
+  margin-bottom: 10px;
+  color: white;
 }
 
-#bob-custom-strat, #larry-custom-strat {
+#you-custom-strat, #accomplice-custom-strat {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  background-color:#888;
+  background-image: linear-gradient(to bottom right, #555, #777);
   color: white;
 }
 
 #iteration-explanation {
   font-size: 10px;
   padding-top: 2px;
-  padding-left: 28px;
-  padding-right: 28px;
+  /* padding-left: 28px;
+  padding-right: 28px; */
   color: #888;
 }
 
 #alert {
   color: red;
   font-size: 20px;
+}
+
+.small-caps {
+  font-variant: small-caps;
 }

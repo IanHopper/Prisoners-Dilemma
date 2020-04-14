@@ -1,35 +1,35 @@
 // This is NOT DRY code yet, but it gets the job done; refine later
 // Pointers
-let bobPoints = 0
-let larryPoints = 0
+let youPoints = 0
+let accomplicePoints = 0
 
 // Iteration variables
 let firstIteration = true; // Allows checking for opening move
 let iterCheck = true; // If false this stops the iterate function if strats are incorrect
 
 // Last choice variables
-let bobLast = "";
-let larryLast = "";
+let youLast = "";
+let accompliceLast = "";
 
 // Loyalty trackers
-let bobAlwaysLoyal = true;
-let larryAlwaysLoyal = true;
-let larryLoyaltyBalance = 0; // Included for future stategy options based on overall play of opponent
-let bobLoyaltyBalance = 0; // Included for future stategy options based on overall play of opponent
+let youAlwaysLoyal = true;
+let accompliceAlwaysLoyal = true;
+let accompliceLoyaltyBalance = 0; // Included for future stategy options based on overall play of accomplice
+let youLoyaltyBalance = 0; // Included for future stategy options based on overall play of accomplice
 
 // Radio button groups for custom opening variables
-let bobOpen = document.getElementsByName('bob-open');
-let larryOpen = document.getElementsByName('larry-open');
+let youOpen = document.getElementsByName('you-open');
+let accompliceOpen = document.getElementsByName('accomplice-open');
 
 // Custom strategy percentage variables
-let bobBothStonewalled = document.getElementById('bob-both-stonewalled')
-let bobBothRatted = document.getElementById('bob-both-ratted')
-let bobBobRatted = document.getElementById('bob-bob-ratted')
-let bobLarryRatted = document.getElementById('bob-larry-ratted')
-let larryBothStonewalled = document.getElementById('larry-both-stonewalled')
-let larryBothRatted = document.getElementById('larry-both-ratted')
-let larryBobRatted = document.getElementById('larry-bob-ratted')
-let larryLarryRatted = document.getElementById('larry-larry-ratted')
+let youBothcooperateed = document.getElementById('you-both-cooperateed')
+let youBothRatted = document.getElementById('you-both-ratted')
+let youyouRatted = document.getElementById('you-you-ratted')
+let youaccompliceRatted = document.getElementById('you-accomplice-ratted')
+let accompliceBothcooperateed = document.getElementById('accomplice-both-cooperateed')
+let accompliceBothRatted = document.getElementById('accomplice-both-ratted')
+let accompliceyouRatted = document.getElementById('accomplice-you-ratted')
+let accompliceaccompliceRatted = document.getElementById('accomplice-accomplice-ratted')
 
 // Calculate button variable
 let calculate = document.getElementById('submit');
@@ -41,35 +41,35 @@ calculate.addEventListener('click', iterate);
 document.getElementById('reset').addEventListener('click', reset)
 
 // Event listener for custom strategy
-const larryStrat = document.getElementById('larry-strategy');
-const bobStrat = document.getElementById('bob-strategy');
-larryStrat.addEventListener('change', revealCustomStrat)
-bobStrat.addEventListener('change', revealCustomStrat)
+const accompliceStrat = document.getElementById('accomplice-strategy');
+const youStrat = document.getElementById('you-strategy');
+accompliceStrat.addEventListener('change', revealCustomStrat)
+youStrat.addEventListener('change', revealCustomStrat)
 
 // Reveal Custom Strategies
 function revealCustomStrat() {
   let customStrats = document.getElementById('custom-strats');
-  let customBob = document.getElementById('bob-custom-strat');
-  let customLarry = document.getElementById('larry-custom-strat');
-  let bv = bobStrat.value;
-  let lv = larryStrat.value;
+  let customyou = document.getElementById('you-custom-strat');
+  let customaccomplice = document.getElementById('accomplice-custom-strat');
+  let bv = youStrat.value;
+  let lv = accompliceStrat.value;
   if (bv == 5 || lv == 5){
     customStrats.style.display = "";
   } else {
     customStrats.style.display = "none";
   }
   if (bv == 5){
-    customBob.style.visibility = "";
+    customyou.style.visibility = "";
   } else {
-    customBob.style.visibility = "hidden";
-    bobOpen.forEach(x => x.checked = false)
+    customyou.style.visibility = "hidden";
+    youOpen.forEach(x => x.checked = false)
 
   }
   if (lv == 5){
-    customLarry.style.visibility = "";
+    customaccomplice.style.visibility = "";
   } else {
-    customLarry.style.visibility = "hidden";
-    larryOpen.forEach(x => x.checked = false)
+    customaccomplice.style.visibility = "hidden";
+    accompliceOpen.forEach(x => x.checked = false)
   }
 }
 
@@ -78,31 +78,35 @@ function reset() {
   console.log("Values reset")
 
   // Reset point counters
-  bobPoints = 0
-  larryPoints = 0
+  youPoints = 0
+  accomplicePoints = 0
 
   // Iteration variables
   firstIteration = true;
   iterCheck = true;
 
   // Reset loyalty rackers
-  bobLast = "";
-  larryLast = "";
-  bobAlwaysLoyal = true;
-  larryAlwaysLoyal = true;
-  larryLoyaltyBalance = 0;
-  bobLoyaltyBalance = 0;
+  youLast = "";
+  accompliceLast = "";
+  youAlwaysLoyal = true;
+  accompliceAlwaysLoyal = true;
+  accompliceLoyaltyBalance = 0;
+  youLoyaltyBalance = 0;
 
   // Reset strategies
-  larryStrat.value = 1;
-  bobStrat.value = 1;
+  accompliceStrat.value = 1;
+  youStrat.value = 1;
   revealCustomStrat();
 
   // Clear innerHTML data
-  let results = document.getElementById('results')
-  let bWins = document.getElementById('bob-wins')
-  let lWins = document.getElementById('larry-wins')
-  results.innerHTML = '';
+  let results = document.getElementById('scoring')
+  let bWins = document.getElementById('you-wins')
+  let lWins = document.getElementById('accomplice-wins')
+  results.innerHTML = `<p>
+    If either of you defects and the other cooperates, the defector gets 5pts and the cooperator 1pt.<br>
+    If you both defect, you each get 1 point.<br>
+    If you both cooperate, you each get 3 points.
+    </p>`;
   bWins.innerHTML = '';
   lWins.innerHTML = '';
 }
@@ -128,61 +132,64 @@ function getResults() {
   console.log(`Calculation values:${b} ${l}`);
   let result = ''
   if (b == 1 && l == 1) {
-    result = 'Bob and Larry stonewalled the cops and got light prison terms'
-    bobPoints += 3;
-    larryPoints += 3;
-    bobLast = 1;
-    larryLast = 1;
+    result = 'You both cooperated and got 3 points each.'
+    youPoints += 3;
+    accomplicePoints += 3;
+    youLast = 1;
+    accompliceLast = 1;
     firstIteration = false;
   } else if (b == 2 && l == 2) {
-    result = 'Bob and Larry both ratted on each other and got long prison terms'
-    bobPoints += 1;
-    larryPoints += 1;
-    bobAlwaysLoyal = false;
-    larryAlwaysLoyal = false;
-    bobLast = 2;
-    larryLast = 2;
+    result = 'You both defected and got 1 point each'
+    youPoints += 1;
+    accomplicePoints += 1;
+    youAlwaysLoyal = false;
+    accompliceAlwaysLoyal = false;
+    youLast = 2;
+    accompliceLast = 2;
     firstIteration = false;
   } else if (b == 2 && l == 1) {
-    result = 'Bob ratted and Larry got a long stretch'
-    bobPoints += 5;
-    bobAlwaysLoyal = false;
-    bobLast = 2;
-    larryLast = 1;
+    result = 'You defected and got 5 points. Your accomplice cooperated and got 1 point.'
+    youPoints += 5;
+    youAlwaysLoyal = false;
+    youLast = 2;
+    accompliceLast = 1;
     firstIteration = false;
   } else if (b == 1 && l == 2){
-    result = 'Larry ratted and Bob got a long stretch'
-    larryPoints += 5;
-    larryAlwaysLoyal = false;
-    larryLast = 1;
-    bobLast = 2;
+    result = 'Your accomplice defected and got 5 points. You cooperated and got 1 point.'
+    accomplicePoints += 5;
+    accompliceAlwaysLoyal = false;
+    youLast = 1;
+    accompliceLast = 2;
     firstIteration = false;
   } else {
-    result = 'Bob and Larry haven\'t properly selected choices.'
-    let alertDiv = document.createElement('div');
-    alertDiv.id = 'alert'
-    let alertText = document.createTextNode('Bob and Larry haven\'t properly selected choices.');
-    alertDiv.appendChild(alertText);
-    document.getElementById('intro').appendChild(alertDiv);
-    setTimeout(() => alertDiv.remove(),7000)
+    result = `<h3 id="alert"> You and your accomplice haven\'t properly selected choices.</h3>`
+    // let alertDiv = document.createElement('div');
+    // alertDiv.id = 'alert'
+    // let alertText = document.createTextNode('You and your accomplice haven\'t properly selected choices.');
+    // alertDiv.appendChild(alertText);
+    // document.getElementById('scoring').appendChild(alertDiv);
+    // setTimeout(() => alertDiv.remove(),7000)
     iterCheck = false;
   }
   // Output results in innerHTML
-  let results = document.getElementById('results')
-  let bWins = document.getElementById('bob-wins')
-  let lWins = document.getElementById('larry-wins')
+  let results = document.getElementById('scoring')
+  let bWins = document.getElementById('you-wins')
+  let lWins = document.getElementById('accomplice-wins')
   results.innerHTML = `
     <p>${result}</p>
   `
-  bWins.innerHTML = `&nbsp;&nbsp; ${bobPoints} pts`
-  lWins.innerHTML = `&nbsp;&nbsp; ${larryPoints} pts`
+  bWins.innerHTML = `&nbsp;&nbsp; ${youPoints} pts`
+  lWins.innerHTML = `&nbsp;&nbsp; ${accomplicePoints} pts`
+
+  // Last values
+  console.log(`you Last: ${youLast} accomplice Last: ${accompliceLast}`)
 };
 
 // Function to calculate actual strategy based on loyalty
 function determineStrat () {
   // Get selected strategy
-  let b = document.getElementById('bob-strategy').value;
-  let l = document.getElementById('larry-strategy').value;
+  let b = document.getElementById('you-strategy').value;
+  let l = document.getElementById('accomplice-strategy').value;
   console.log(`Initial values: ${b} ${l}`)
   // Check if the first iteration
   if (firstIteration) {
@@ -193,18 +200,18 @@ function determineStrat () {
       l = 1
     }
     if (b == 5){
-      if (document.getElementById('bob-open-stonewall').checked){
+      if (document.getElementById('you-open-cooperate').checked){
         b = 1
       }
-      if (document.getElementById('bob-open-rat').checked){
+      if (document.getElementById('you-open-rat').checked){
         b = 2
       }
     }
     if (l == 5){
-      if (document.getElementById('larry-open-stonewall').checked){
+      if (document.getElementById('accomplice-open-cooperate').checked){
         l = 1
       }
-      if (document.getElementById('larry-open-rat').checked){
+      if (document.getElementById('accomplice-open-rat').checked){
         l = 2
       }
     }
@@ -213,21 +220,21 @@ function determineStrat () {
   
   // Determine actual strat value for tit for tat
   if (b == 3){
-    b = larryLast
+    b = accompliceLast
   }
   if (l == 3) {
-    l = bobLast
+    l = youLast
   }
   // Determine actual strategy for eternal grudge
   if (b == 4){
-    if (larryAlwaysLoyal == true) {
+    if (accompliceAlwaysLoyal == true) {
       b = 1
     } else {
       b = 2
     }
   }
   if (l == 4){
-    if (bobAlwaysLoyal == true) {
+    if (youAlwaysLoyal == true) {
       l = 1
     } else {
       l = 2
@@ -235,67 +242,67 @@ function determineStrat () {
   }
   
   // Custom strategies
-  let bobRandom = Math.ceil(Math.random()*100)
-  let larryRandom = Math.ceil(Math.random()*100)
-  console.log(`Bob random: ${bobRandom} Larry Random: ${larryRandom}`);
-  if(bobLast == 1 && larryLast == 1){
+  let youRandom = Math.ceil(Math.random()*100)
+  let accompliceRandom = Math.ceil(Math.random()*100)
+  console.log(`you random: ${youRandom} accomplice Random: ${accompliceRandom}`);
+  if(youLast == 1 && accompliceLast == 1){
     if (b == 5){
-      if (bobRandom <= bobBothStonewalled.value){
+      if (youRandom <= youBothcooperateed.value){
         b = 1
       } else {
         b = 2
       }
     }
     if (l == 5){
-      if (larryRandom <= larryBothStonewalled.value){
+      if (accompliceRandom <= accompliceBothcooperateed.value){
         l = 1
       } else {
         l = 2
       }
     }
   }
-  if(bobLast == 2 && larryLast == 2){
+  if(youLast == 2 && accompliceLast == 2){
     if (b == 5){
-      if (bobRandom <= bobBothRatted.value){
+      if (youRandom <= youBothRatted.value){
         b = 1
       } else {
         b = 2
       }
     }
     if (l == 5){
-      if (larryRandom <= larryBothRatted.value){
+      if (accompliceRandom <= accompliceBothRatted.value){
         l = 1
       } else {
         l = 2
       }
     }
   }
-  if(bobLast == 2 && larryLast == 1){
+  if(youLast == 2 && accompliceLast == 1){
     if (b == 5){
-      if (bobRandom<= bobBobRatted.value){
+      if (youRandom<= youyouRatted.value){
         b = 1
       } else {
         b = 2
       }
     }
     if (l == 5){
-      if (larryRandom <= larryBobRatted.value){
+      if (accompliceRandom <= accompliceyouRatted.value){
         l = 1
       } else {
         l = 2
       }
     }
   }
-  if(bobLast == 1 && larryLast == 2){
+  if(youLast == 1 && accompliceLast == 2){
     if (b == 5){
-      if (bobRandom <= bobLarryRatted.value){
+      if (youRandom <= youaccompliceRatted.value){
         b = 1
       } else {
         b = 2
       }
     }
     if (l == 5){
-      if (larryRandom <= larryLarryRatted.value){
+      if (accompliceRandom <= accompliceaccompliceRatted.value){
         l = 1
       } else {
         l = 2

@@ -14,20 +14,28 @@
     <div class="container mt-2">
       <div  class="row mb-3">
         <div id="intro" class="col-sm-12 text-center">
-          <h1 id="title">Prisoner's Dilemma</h1>
-          <p>Bob and Larry have been arrested and the cops are interrogating them separately. <br>
-            Each can choose whether to stonewall the cops or rat out the other guy.<br>
+          <h1 id="title" class="small-caps">Prisoner's Dilemma</h1>
+          <p>You and an accomplice have been arrested and the cops are interrogating you separately. <br>
+            Each of you can choose whether to stonewall the cops (COOPERATE) or rat out the other guy (DEFECT).<br>
           </p>
+        </div>
+        <div id="scoring" class="col-sm-12 text-center">
+          <p>
+          If either of you defects and the other cooperates, the defector gets 5pts and the cooperator 1pt.<br>
+          If you both defect, you each get 1 point.<br>
+          If you both cooperate, you each get 3 points.
+          </p>
+          
         </div>
       </div>
       <div class="row" id="main-selection">
         <div class="col-sm-4 text-center">
-          <h2 id="bob-name">Bob<span class="point-total" id="bob-wins"></span></h2>
+          <h2 id="you-name">You<span class="point-total" id="you-wins"></span></h2>
           <div class="form-group">
-            <label for="bob-strategy">Strategy</label>
-            <select name="bob-strategy" id="bob-strategy" class="form-control">
-              <option value="1">Stonewall the cops</option>
-              <option value="2">Rat out the other guy</option>
+            <label for="you-strategy">Strategy</label>
+            <select name="you-strategy" id="you-strategy" class="form-control">
+              <option value="1">Cooperate</option>
+              <option value="2">Defect</option>
               <option value="3">Tit for Tat</option>
               <option value="4">Eternal Grudge</option>
               <option value="5">Custom Strategy</option>
@@ -43,17 +51,17 @@
               <span class="input-group-text" id="iteration-addon">Iterations</span>
             </div>
             <input id="iterations" type="number" class="form-control" value=1 aria-label="Iterations" aria-describeby="iteration-addon">
-            <div id=iteration-explanation>Select how many times Bob and Larry are arrested and interrogated.</div>
+            <div id=iteration-explanation>How many times you and your accomplice are arrested and interrogated.</div>
           </div>
         </div>
         <div class="col-sm-4 text-center">
-          <h2 id="larry-name">Larry<span class="point-total" id="larry-wins"></span></h2>
-          <div class="col-sm-6 text-center" id="larry-wins"></div>
+          <h2 id="accomplice-name">Accomplice<span class="point-total" id="accomplice-wins"></span></h2>
+          <div class="col-sm-6 text-center" id="accomplice-wins"></div>
           <div class="form-group">
-            <label for="larry-strategy">Strategy</label>
-            <select name="larry-strategy" id="larry-strategy" class="form-control">
-              <option value="1">Stonewall the cops</option>
-              <option value="2">Rat out the other guy</option>
+            <label for="accomplice-strategy">Strategy</label>
+            <select name="accomplice-strategy" id="accomplice-strategy" class="form-control">
+              <option value="1">Cooperate</option>
+              <option value="2">Defect</option>
               <option value="3">Tit for Tat</option>
               <option value="4">Eternal Grudge</option>
               <option value="5">Custom Strategy</option>
@@ -61,93 +69,90 @@
           </div>
         </div>
       </div>
+      
       <div class="row" id="custom-strats" style="display: none">
-        <!-- Bob Custom strategy -->
-        <div class="col-sm-4" id="bob-custom-strat" style="visibility: hidden">
+        <!-- You Custom strategy -->
+        <div class="col-sm-5" id="you-custom-strat" style="visibility: hidden">
           <div>
-            <h4 class="text-center">Opening Move</h4>
+            <h4 class="text-center">Custom Opening Move</h4>
             <div class="custom-control custom-radio">
-              <input type="radio" id="bob-open-stonewall" name="bob-open" class="custom-control-input" value=1>
-              <label for="bob-open-stonewall" class="custom-control-label">Stonewall the cops</label>
+              <input type="radio" id="you-open-cooperate" name="you-open" class="custom-control-input" value=1>
+              <label for="you-open-cooperate" class="custom-control-label">Cooperate</label>
             </div>
             <div class="custom-control custom-radio">
-              <input type="radio" id="bob-open-rat" name="bob-open" class="custom-control-input">
-              <label for="bob-open-rat" class="custom-control-label">Rat out Larry</label>
+              <input type="radio" id="you-open-rat" name="you-open" class="custom-control-input">
+              <label for="you-open-rat" class="custom-control-label">Defect</label>
             </div>
           </div>
           <div class="mt-2">
             <h4 class="text-center">Reactions</h4>
-            <div class="mb-2 text-center">What percentage will you stonewall if the last round...</div>
+            <div class="mb-2 text-center">What percentage will you cooperate if the last round...</div>
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text">Both stonewalled</span>
+                <span class="input-group-text">Both cooperated</span>
               </div>
-                <input id="bob-both-stonewalled" class="form-control" aria-label="Both stonewalled" aria-describeby="bob-both-stonewalled" type="number" value=50>
+                <input id="you-both-cooperateed" class="form-control" aria-label="Both cooperated" aria-describeby="you-both-cooperateed" type="number" value=50>
             </div>
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text">Both ratted</span>
+                <span class="input-group-text">Both defected</span>
               </div>
-                <input id="bob-both-ratted" class="form-control" aria-label="Both ratted" aria-describeby="bob-both-ratted" type="number" value=50>
+                <input id="you-both-ratted" class="form-control" aria-label="Both defected" aria-describeby="you-both-ratted" type="number" value=50>
             </div>
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text">Only Bob ratted</span>
+                <span class="input-group-text">Only you defected</span>
               </div>
-                <input id="bob-bob-ratted" class="form-control" aria-label="You ratted" aria-describeby="bob-bob-ratted" type="number" value=50>
+                <input id="you-you-ratted" class="form-control" aria-label="you ratted" aria-describeby="you-you-ratted" type="number" value=50>
             </div>
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text">Only Larry ratted</span>
+                <span class="input-group-text">Only accomplice defected</span>
               </div>
-                <input id="bob-larry-ratted" class="form-control" aria-label="You didn't rat" aria-describeby="bob-larry-ratted" type="number" value=50>
+                <input id="you-accomplice-ratted" class="form-control" aria-label="you didn't rat" aria-describeby="you-accomplice-ratted" type="number" value=50>
             </div>
           </div>
         </div>
-        <div class="col-sm-4 text-center" id="custom-strat-explain">
-          <div> 
-            <h2>Custom Strategies</h2>Enter your opening move and the percentage of the time you will stonewall based on the most recent outcome.
-          </div>
-        </div>
-        <!-- Larry Custom Strategy -->
-        <div class="col-sm-4" id="larry-custom-strat" style="visibility: hidden">
+        <div class="col-sm-2 text-center"></div>
+        <!-- Accomplice Custom Strategy -->
+        <div class="col-sm-5" id="accomplice-custom-strat" style="visibility: hidden">
           <div>
-            <h4 class="text-center">Opening Move</h4>
+            <h4 class="text-center">Custom Opening Move</h4>
             <div class="custom-control custom-radio">
-              <input type="radio" id="larry-open-stonewall" name="larry-open" class="custom-control-input">
-              <label for="larry-open-stonewall" class="custom-control-label">Stonewall the cops</label>
+              <input type="radio" id="accomplice-open-cooperate" name="accomplice-open" class="custom-control-input">
+              <label for="accomplice-open-cooperate" class="custom-control-label">Cooperate</label>
             </div>
             <div class="custom-control custom-radio">
-              <input type="radio" id="larry-open-rat" name="larry-open" class="custom-control-input">
-              <label for="larry-open-rat" class="custom-control-label">Rat out Bob</label>
+              <input type="radio" id="accomplice-open-rat" name="accomplice-open" class="custom-control-input">
+              <label for="accomplice-open-rat" class="custom-control-label">Defect</label>
             </div>
           </div>
           <div class="mt-2">
             <h4 class="text-center">Reactions</h4>
-            <div class="mb-2 text-center">What percentage will you stonewall if the last round...</div>
+            <div class="mb-2 text-center">What percentage will you cooperate if the last round...</div>
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text">Both stonewalled</span>
+                <span class="input-group-text">Both cooperated</span>
               </div>
-                <input id="larry-both-stonewalled" class="form-control" aria-label="Both stonewalled" aria-describeby="larry-both-stonewalled" type="number" value=50>
+                <input id="accomplice-both-cooperateed" class="form-control" aria-label="Both cooperated" aria-describeby="accomplice-both-cooperateed" type="number" value=50>
             </div>
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text">Both ratted</span>
+                <span class="input-group-text">Both defected</span>
               </div>
-                <input id="larry-both-ratted" class="form-control" aria-label="Both ratted" aria-describeby="larry-both-ratted" type="number" value=50>
+                <input id="accomplice-both-ratted" class="form-control" aria-label="Both defected" aria-describeby="accomplice-both-ratted" type="number" value=50>
             </div>
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text">Only Larry ratted</span>
+                <span class="input-group-text">Accomplice defected</span>
               </div>
-                <input id="larry-larry-ratted" class="form-control" aria-label="You ratted" aria-describeby="larry-larry-ratted" type="number" value=50>
+                <input id="accomplice-accomplice-ratted" class="form-control" aria-label="you ratted" aria-describeby="accomplice-accomplice-ratted" type="number" value=50>
             </div>
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text">Only Bob ratted</span>
+                <span class="input-group-text">Only you defected</span>
               </div>
-                <input id="larry-bob-ratted" class="form-control" aria-label="You didn't rat" aria-describeby="larry-bob-ratted" type="number" value=50>
+                <input id="accomplice-you-ratted" class="form-control" aria-label="you didn't rat" aria-describeby="accomplice-you-ratted" type="number" value=50>
             </div>
           </div>
         </div>
