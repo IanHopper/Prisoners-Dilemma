@@ -1,19 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=IM+Fell+French+Canon+SC&family:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Cinzel+Decorative:wght@900&display=swap');
 
 body {
   font-family: Oswald;
 }
 
-#iterations {
-  max-width: 70px;
-}
-
 #you-name {
-  color: red;
+  color: green;
 }
 
 #accomplice-name {
-  color: lime;
+  color: red;
 }
 
 .container {
@@ -30,41 +26,44 @@ footer {
   color: black;
 }
 
-/* #custom-strats {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-radius: 10px;
-  background-color:#666;
-  background-image: linear-gradient(to bottom right, #555, #777);
-} */
-
-#custom-strat-explain{
-  margin-bottom: 10px;
-  color: white;
-}
-
 #you-custom-strat, #accomplice-custom-strat {
   padding-top: 10px;
   padding-bottom: 10px;
-  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  /* border-radius: 10px; */
   background-color:#888;
   background-image: linear-gradient(to bottom right, #555, #777);
-  color: white;
+  color: white; 
 }
 
 #iteration-explanation {
   font-size: 10px;
   padding-top: 2px;
-  /* padding-left: 28px;
-  padding-right: 28px; */
   color: #888;
 }
 
 #alert {
   color: red;
   font-size: 20px;
+  text-align: center;
 }
 
 .small-caps {
   font-variant: small-caps;
 }
+
+#iterations {
+  max-width:100px;
+}
+
+#matrix {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* #scoring {
+} */
+
+/* #intro{
+} */

@@ -17,6 +17,12 @@ let accompliceAlwaysLoyal = true;
 let accompliceLoyaltyBalance = 0; // Included for future stategy options based on overall play of accomplice
 let youLoyaltyBalance = 0; // Included for future stategy options based on overall play of accomplice
 
+//Outcome counters
+let bothCoooperate = 0;
+let bothDefect = 0;
+let youDefect = 0;
+let accompliceDefects = 0;
+
 // Radio button groups for custom opening variables
 let youOpen = document.getElementsByName('you-open');
 let accompliceOpen = document.getElementsByName('accomplice-open');
@@ -48,27 +54,20 @@ youStrat.addEventListener('change', revealCustomStrat)
 
 // Reveal Custom Strategies
 function revealCustomStrat() {
-  let customStrats = document.getElementById('custom-strats');
   let customyou = document.getElementById('you-custom-strat');
   let customaccomplice = document.getElementById('accomplice-custom-strat');
   let bv = youStrat.value;
   let lv = accompliceStrat.value;
-  if (bv == 5 || lv == 5){
-    customStrats.style.display = "";
-  } else {
-    customStrats.style.display = "none";
-  }
   if (bv == 5){
-    customyou.style.visibility = "";
+    customyou.style.display = "";
   } else {
-    customyou.style.visibility = "hidden";
+    customyou.style.display = "none";
     youOpen.forEach(x => x.checked = false)
-
   }
   if (lv == 5){
-    customaccomplice.style.visibility = "";
+    customaccomplice.style.display = "";
   } else {
-    customaccomplice.style.visibility = "hidden";
+    customaccomplice.style.display = "none";
     accompliceOpen.forEach(x => x.checked = false)
   }
 }
@@ -93,6 +92,12 @@ function reset() {
   accompliceLoyaltyBalance = 0;
   youLoyaltyBalance = 0;
 
+  //Outcome counters
+  bothCoooperate = 0;
+  bothDefect = 0;
+  youDefect = 0;
+  accompliceDefects = 0;
+
   // Reset strategies
   accompliceStrat.value = 1;
   youStrat.value = 1;
@@ -102,13 +107,10 @@ function reset() {
   let results = document.getElementById('scoring')
   let bWins = document.getElementById('you-wins')
   let lWins = document.getElementById('accomplice-wins')
-  results.innerHTML = `<p>
-    If either of you defects and the other cooperates, the defector gets 5pts and the cooperator 1pt.<br>
-    If you both defect, you each get 1 point.<br>
-    If you both cooperate, you each get 3 points.
-    </p>`;
+  results.innerHTML = '';
   bWins.innerHTML = '';
   lWins.innerHTML = '';
+  document.getElementById('matrix').style.display = ""
 }
 
 // Run calculation indicated number of times
@@ -138,6 +140,7 @@ function getResults() {
     youLast = 1;
     accompliceLast = 1;
     firstIteration = false;
+    bothCoooperate += 1;
   } else if (b == 2 && l == 2) {
     result = 'You both defected and got 1 point each'
     youPoints += 1;
@@ -147,6 +150,7 @@ function getResults() {
     youLast = 2;
     accompliceLast = 2;
     firstIteration = false;
+    bothDefect += 1;
   } else if (b == 2 && l == 1) {
     result = 'You defected and got 5 points. Your accomplice cooperated and got 1 point.'
     youPoints += 5;
@@ -154,6 +158,7 @@ function getResults() {
     youLast = 2;
     accompliceLast = 1;
     firstIteration = false;
+    youDefect += 1;
   } else if (b == 1 && l == 2){
     result = 'Your accomplice defected and got 5 points. You cooperated and got 1 point.'
     accomplicePoints += 5;
@@ -161,14 +166,9 @@ function getResults() {
     youLast = 1;
     accompliceLast = 2;
     firstIteration = false;
+    accompliceDefects += 1;
   } else {
     result = `<h3 id="alert"> You and your accomplice haven\'t properly selected choices.</h3>`
-    // let alertDiv = document.createElement('div');
-    // alertDiv.id = 'alert'
-    // let alertText = document.createTextNode('You and your accomplice haven\'t properly selected choices.');
-    // alertDiv.appendChild(alertText);
-    // document.getElementById('scoring').appendChild(alertDiv);
-    // setTimeout(() => alertDiv.remove(),7000)
     iterCheck = false;
   }
   // Output results in innerHTML
@@ -176,8 +176,12 @@ function getResults() {
   let bWins = document.getElementById('you-wins')
   let lWins = document.getElementById('accomplice-wins')
   results.innerHTML = `
-    <p>${result}</p>
+    <p>
+    <h6>In total here have been:</h6>${bothCoooperate} mutual cooperations<br> ${bothDefect} mutual defections<br> ${youDefect} solo defections by you<br> ${accompliceDefects} solo defections by your accomplice.
+    </p>
+    <p class="text-center">Most recent result: ${result}</p>
   `
+  document.getElementById('matrix').style.display = "none"
   bWins.innerHTML = `&nbsp;&nbsp; ${youPoints} pts`
   lWins.innerHTML = `&nbsp;&nbsp; ${accomplicePoints} pts`
 
