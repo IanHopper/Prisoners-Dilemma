@@ -156,7 +156,7 @@ function getResults() {
     firstIteration = false;
     bothDefect += 1;
   } else if (b == 2 && l == 1) {
-    result = 'You defected and got 5 points. Your accomplice cooperated and got 1 point.'
+    result = 'You defected and got 5 points. Your accomplice cooperated and got no points.'
     youPoints += 5;
     youAlwaysLoyal = false;
     youLast = 2;
@@ -164,7 +164,7 @@ function getResults() {
     firstIteration = false;
     youDefect += 1;
   } else if (b == 1 && l == 2){
-    result = 'Your accomplice defected and got 5 points. You cooperated and got 1 point.'
+    result = 'Your accomplice defected and got 5 points. You cooperated and got no points.'
     accomplicePoints += 5;
     accompliceAlwaysLoyal = false;
     youLast = 1;
@@ -205,6 +205,7 @@ function getResults() {
   document.getElementById('matrix').style.display = "none"
   bWins.innerHTML = `&nbsp;&nbsp; ${youPoints} pts`
   lWins.innerHTML = `&nbsp;&nbsp; ${accomplicePoints} pts`
+  document.getElementById('scoring').scrollIntoView();
 
   // Last values
   console.log(`you Last: ${youLast} accomplice Last: ${accompliceLast}`)
