@@ -28,14 +28,14 @@ let youOpen = document.getElementsByName('you-open');
 let accompliceOpen = document.getElementsByName('accomplice-open');
 
 // Custom strategy percentage variables
-let youBothcooperateed = document.getElementById('you-both-cooperateed')
-let youBothRatted = document.getElementById('you-both-ratted')
-let youyouRatted = document.getElementById('you-you-ratted')
-let youaccompliceRatted = document.getElementById('you-accomplice-ratted')
-let accompliceBothcooperateed = document.getElementById('accomplice-both-cooperateed')
-let accompliceBothRatted = document.getElementById('accomplice-both-ratted')
-let accompliceyouRatted = document.getElementById('accomplice-you-ratted')
-let accompliceaccompliceRatted = document.getElementById('accomplice-accomplice-ratted')
+let youBothCooperated = document.getElementById('you-both-cooperated')
+let youBothDefected = document.getElementById('you-both-defected')
+let youYouDefected = document.getElementById('you-you-defected')
+let youAccompliceDefected = document.getElementById('you-accomplice-defected')
+let accompliceBothCooperated = document.getElementById('accomplice-both-cooperated')
+let accompliceBothDefected = document.getElementById('accomplice-both-defected')
+let accompliceYouDefected = document.getElementById('accomplice-you-defected')
+let accompliceAccompliceDefected = document.getElementById('accomplice-accomplice-defected')
 
 // Calculate button variable
 let calculate = document.getElementById('submit');
@@ -229,7 +229,7 @@ function determineStrat () {
       if (document.getElementById('you-open-cooperate').checked){
         b = 1
       }
-      if (document.getElementById('you-open-rat').checked){
+      if (document.getElementById('you-open-defect').checked){
         b = 2
       }
     }
@@ -237,7 +237,7 @@ function determineStrat () {
       if (document.getElementById('accomplice-open-cooperate').checked){
         l = 1
       }
-      if (document.getElementById('accomplice-open-rat').checked){
+      if (document.getElementById('accomplice-open-defect').checked){
         l = 2
       }
     }
@@ -273,14 +273,14 @@ function determineStrat () {
   console.log(`you random: ${youRandom} accomplice Random: ${accompliceRandom}`);
   if(youLast == 1 && accompliceLast == 1){
     if (b == 5){
-      if (youRandom <= youBothcooperateed.value){
+      if (youRandom <= youBothCooperated.value){
         b = 1
       } else {
         b = 2
       }
     }
     if (l == 5){
-      if (accompliceRandom <= accompliceBothcooperateed.value){
+      if (accompliceRandom <= accompliceBothCooperated.value){
         l = 1
       } else {
         l = 2
@@ -289,14 +289,14 @@ function determineStrat () {
   }
   if(youLast == 2 && accompliceLast == 2){
     if (b == 5){
-      if (youRandom <= youBothRatted.value){
+      if (youRandom <= youBothDefected.value){
         b = 1
       } else {
         b = 2
       }
     }
     if (l == 5){
-      if (accompliceRandom <= accompliceBothRatted.value){
+      if (accompliceRandom <= accompliceBothDefected.value){
         l = 1
       } else {
         l = 2
@@ -305,14 +305,14 @@ function determineStrat () {
   }
   if(youLast == 2 && accompliceLast == 1){
     if (b == 5){
-      if (youRandom<= youyouRatted.value){
+      if (youRandom<= youYouDefected.value){
         b = 1
       } else {
         b = 2
       }
     }
     if (l == 5){
-      if (accompliceRandom <= accompliceyouRatted.value){
+      if (accompliceRandom <= accompliceYouDefected.value){
         l = 1
       } else {
         l = 2
@@ -321,14 +321,14 @@ function determineStrat () {
   }
   if(youLast == 1 && accompliceLast == 2){
     if (b == 5){
-      if (youRandom <= youaccompliceRatted.value){
+      if (youRandom <= youAccompliceDefected.value){
         b = 1
       } else {
         b = 2
       }
     }
     if (l == 5){
-      if (accompliceRandom <= accompliceaccompliceRatted.value){
+      if (accompliceRandom <= accompliceAccompliceDefected.value){
         l = 1
       } else {
         l = 2
