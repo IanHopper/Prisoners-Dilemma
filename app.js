@@ -103,6 +103,17 @@ function reset() {
   youStrat.value = 1;
   revealCustomStrat();
 
+  // Rest custom strategy defaults
+  youBothCooperated.value = 50;
+  youBothDefected.value = 50;
+  youYouDefected.value = 50;
+  youAccompliceDefected.value = 50;
+  accompliceBothCooperated.value = 50;
+  accompliceBothDefected.value = 50;
+  accompliceYouDefected.value = 50;
+  accompliceAccompliceDefected.value = 50;
+  slider();
+
   // Clear innerHTML data
   let results = document.getElementById('scoring')
   let bWins = document.getElementById('you-wins')
@@ -340,3 +351,24 @@ function determineStrat () {
   return {'b': b, 'l': l}
 
 }
+
+// Slider variables
+let ranges = document.querySelectorAll('.range'),
+    values = document.querySelectorAll('.range-value');
+
+// Slider function
+function slider (){ 
+    // Loops through percentages and updates based on the slider location
+    for (let val of values){
+      val.innerHTML = `${val.previousSibling.previousSibling.value}%`;
+      console.log(val.previousSibling.previousSibling.value)
+    }
+    // Listens for slider input and updates percentages based on slider location
+    for (let r of ranges){
+      r.addEventListener('input', ()=>{
+        r.nextSibling.nextSibling.innerHTML = `${r.value}%`
+      })
+    }
+};
+
+slider();

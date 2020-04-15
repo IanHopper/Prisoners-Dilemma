@@ -31,9 +31,8 @@ footer {
   padding-bottom: 10px;
   padding-left: 10px;
   padding-right: 10px;
-  /* border-radius: 10px; */
   background-color:#888;
-  background-image: linear-gradient(to bottom right, #555, #777);
+  background-image: linear-gradient(to bottom right, #888, #999);
   color: white; 
 }
 
@@ -64,4 +63,14 @@ footer {
 }
 .percentage {
   color:black;
+}
+
+.custom-range{
+  background-color: #999;
+  height: 1rem;
+}
+
+.slider-tag {
+  width: 55%;
+  text-align: left;
 }

@@ -63,7 +63,7 @@
               </thead>
               <tr>
                 <td><span class="you">YOU</span><br>COOPERATE</td>
-                <td>Mutual Cooperation<br><span class="you">You 3pts</span><br><span class="accomplice">Accomplice 3pts</span></td>
+                <td>Mutual cooperation<br><span class="you">You 3pts</span><br><span class="accomplice">Accomplice 3pts</span></td>
                 <td><br>Solo Defection (Accomplice)<br><span class="you">You 0pts</span><br><span class="accomplice">Accomplice 5pts</span></td>
               </tr>
               <tr>
@@ -101,30 +101,22 @@
               </div>
               <div class="mt-2">
                 <h4 class="text-center">Reactions</h4>
-                <div class="mb-2 text-center">Probability % of cooperating the next time if last time...</div>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Both cooperated</span>
-                  </div>
-                    <input id="you-both-cooperated" class="form-control" aria-label="Both cooperated" aria-describeby="you-both-cooperated" type="number" value=50>
+                <div class="mb-2 text-center">Probability of cooperating if the previous outcome was:</div>
+                <div>
+                    <span class="input-group-text"><span class="slider-tag">Mutual cooperation</span>&nbsp;<input class="range custom-range" id="you-both-cooperated" type="range" value="50" min="0" max="100">&nbsp;&nbsp;
+                    <span class="range-value">0</span></span>
                 </div>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Both defected</span>
-                  </div>
-                    <input id="you-both-defected" class="form-control" aria-label="Both defected" aria-describeby="you-both-defected" type="number" value=50>
+                <div>
+                    <span class="input-group-text"><span class="slider-tag">Mutual defection</span>&nbsp;<input class="range custom-range" id="you-both-defected" type="range" value="50" min="0" max="100">&nbsp;&nbsp;
+                    <span class="range-value">0</span></span>
                 </div>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">You solo defect</span>
-                  </div>
-                    <input id="you-you-defected" class="form-control" aria-label="you defected" aria-describeby="you-you-defected" type="number" value=50>
+                <div>
+                  <span class="input-group-text"><span class="slider-tag">You solo defect</span>&nbsp;<input class="range custom-range" id="you-you-defected" type="range" value="50" min="0" max="100">&nbsp;&nbsp;
+                    <span class="range-value">0</span></span>
                 </div>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Accomplice solo defects</span>
-                  </div>
-                    <input id="you-accomplice-defected" class="form-control" aria-label="you didn't defect" aria-describeby="you-accomplice-defected" type="number" value=50>
+                <div>
+                  <span class="input-group-text"><span class="slider-tag">Accomplice solo defects</span>&nbsp;<input class="range custom-range" id="you-accomplice-defected" type="range" value="50" min="0" max="100">&nbsp;&nbsp;
+                  <span class="range-value">0</span></span>
                 </div>
               </div>
             </div>
@@ -155,31 +147,23 @@
               </div>
               <div class="mt-2">
                 <h4 class="text-center">Reactions</h4>
-                <div class="mb-2 text-center">Probability % of cooperating the next time if last time...</div>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Both cooperated</span>
-                  </div>
-                    <input id="accomplice-both-cooperated" class="form-control" aria-label="Both cooperated" aria-describeby="accomplice-both-cooperated" type="number" value=50>
-                </div>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Both defected</span>
-                  </div>
-                    <input id="accomplice-both-defected" class="form-control" aria-label="Both defected" aria-describeby="accomplice-both-defected" type="number" value=50>
-                </div>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">You solo defect</span>
-                  </div>
-                    <input id="accomplice-you-defected" class="form-control" aria-label="you didn't defect" aria-describeby="accomplice-you-defected" type="number" value=50>
-                </div>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Accomplice solo defects</span>
-                  </div>
-                    <input id="accomplice-accomplice-defected" class="form-control" aria-label="you defected" aria-describeby="accomplice-accomplice-defected" type="number" value=50>
-                </div>
+                <div class="mb-2 text-center">Probability of cooperating if the previous outcome was:</div>
+                <div>
+                  <span class="input-group-text"><span class="slider-tag">Mutual cooperation</span>&nbsp;<input class="range custom-range" id="accomplice-both-cooperated" type="range" value="50" min="0" max="100">&nbsp;&nbsp;
+                  <span class="range-value">0</span></span>
+              </div>
+              <div>
+                  <span class="input-group-text"><span class="slider-tag">Mutual defection</span>&nbsp;<input class="range custom-range" id="accomplice-both-defected" type="range" value="50" min="0" max="100">&nbsp;&nbsp;
+                  <span class="range-value">0</span></span>
+              </div>
+              <div>
+                <span class="input-group-text"><span class="slider-tag">You solo defect</span>&nbsp;<input class="range custom-range" id="accomplice-you-defected" type="range" value="50" min="0" max="100">&nbsp;&nbsp;
+                  <span class="range-value">0</span></span>
+              </div>
+              <div>
+                <span class="input-group-text"><span class="slider-tag">Accomplice solo defects</span>&nbsp;<input class="range custom-range" id="accomplice-accomplice-defected" type="range" value="50" min="0" max="100">&nbsp;&nbsp;
+                <span class="range-value">0</span></span>
+              </div>
               </div>
             </div>
           </div>
@@ -221,6 +205,4 @@
 </body>
 </html>
 
-<!-- <div>
-  <input type="range" min=0 max=100 name=percent>
-</div> -->
+
