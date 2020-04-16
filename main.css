@@ -32,7 +32,7 @@ footer {
   padding-left: 10px;
   padding-right: 10px;
   background-color:#888;
-  background-image: linear-gradient(to bottom right, #888, #999);
+  background-image: linear-gradient(to bottom right, #999, #aaa);
   color: white; 
 }
 
@@ -74,3 +74,6 @@ footer {
   width: 55%;
   text-align: left;
 }
+
+/* .th, .td {
+} */

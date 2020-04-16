@@ -64,11 +64,11 @@
               <tr>
                 <td><span class="you">YOU</span><br>COOPERATE</td>
                 <td>Mutual cooperation<br><span class="you">You 3pts</span><br><span class="accomplice">Accomplice 3pts</span></td>
-                <td><br>Solo Defection (Accomplice)<br><span class="you">You 0pts</span><br><span class="accomplice">Accomplice 5pts</span></td>
+                <td>Solo Defection (Accomplice)<br><span class="you">You 0pts</span><br><span class="accomplice">Accomplice 5pts</span></td>
               </tr>
               <tr>
                 <td><span class="you">YOU</span><br>DEFECT</td>
-                <td><br>Solo Defection (You)<br><span class="you">You 5pts</span><br><span class="accomplice">Accomplice 0pts</span></td>
+                <td>Solo Defection (You)<br><span class="you">You 5pts</span><br><span class="accomplice">Accomplice 0pts</span></td>
                 <td>Mutual Defection<br><span class="you">You 1pt</span><br><span class="accomplice">Accomplice 1pt</span></td>
               </tr>
             </tbody>
@@ -88,16 +88,22 @@
               <option value="5">Custom Strategy</option>
             </select>
             <div class="col-sm-12" id="you-custom-strat" style="display: none">
-              <div>
-                <h4 class="text-center">Your Opening Move</h4>
-                <div class="custom-control custom-radio">
-                  <input type="radio" id="you-open-cooperate" name="you-open" class="custom-control-input" value=1>
-                  <label for="you-open-cooperate" class="custom-control-label">Cooperate</label>
+              <h4 class="text-center">Your Opening Move</h4>
+              <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3">
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="you-open-cooperate" name="you-open" class="custom-control-input">
+                    <label for="you-open-cooperate" class="custom-control-label">COOPERATE</label>
+                  </div>
                 </div>
-                <div class="custom-control custom-radio">
-                  <input type="radio" id="you-open-defect" name="you-open" class="custom-control-input">
-                  <label for="you-open-defect" class="custom-control-label">Defect</label>
+                <div class="col-sm-3">
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="you-open-defect" name="you-open" class="custom-control-input">
+                    <label for="you-open-defect" class="custom-control-label">DEFECT</label>
+                  </div>
                 </div>
+                <div class="col-sm-3"></div>
               </div>
               <div class="mt-2">
                 <h4 class="text-center">Reactions</h4>
@@ -134,16 +140,22 @@
               <option value="5">Custom Strategy</option>
             </select>
             <div class="col-sm-12" id="accomplice-custom-strat" style="display: none">
-              <div>
-                <h4 class="text-center">Accomplice Opening Move</h4>
-                <div class="custom-control custom-radio">
-                  <input type="radio" id="accomplice-open-cooperate" name="accomplice-open" class="custom-control-input">
-                  <label for="accomplice-open-cooperate" class="custom-control-label">Cooperate</label>
+              <h4 class="text-center">Accomplice Opening Move</h4>
+              <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3">
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="accomplice-open-cooperate" name="accomplice-open" class="custom-control-input">
+                    <label for="accomplice-open-cooperate" class="custom-control-label">COOPERATE</label>
+                  </div>
                 </div>
-                <div class="custom-control custom-radio">
-                  <input type="radio" id="accomplice-open-defect" name="accomplice-open" class="custom-control-input">
-                  <label for="accomplice-open-defect" class="custom-control-label">Defect</label>
+                <div class="col-sm-3">
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="accomplice-open-defect" name="accomplice-open" class="custom-control-input">
+                    <label for="accomplice-open-defect" class="custom-control-label">DEFECT</label>
+                  </div>
                 </div>
+                <div class="col-sm-3"></div>
               </div>
               <div class="mt-2">
                 <h4 class="text-center">Reactions</h4>
